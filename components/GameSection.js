@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { bartleTypes } from "@/data/bartle";
 import BartleChart from "./BartleChart";
 import EvidenceGallery from "./EvidenceGallery";
+import SteamStats from "./SteamStats";
 
 // Mencari data tipe Bartle (nama dan warna) berdasarkan key-nya.
 function findType(key) {
@@ -8,7 +10,7 @@ function findType(key) {
 }
 
 // Satu bagian artikel untuk satu game.
-// Isinya: judul, info singkat, alasan, analisis Bartle, dan bukti screenshot.
+// Isinya: cover, info singkat, alasan, analisis Bartle, dan bukti bermain.
 export default function GameSection({ game }) {
   return (
     <section
@@ -18,9 +20,17 @@ export default function GameSection({ game }) {
       // supaya bisa dipakai oleh elemen di dalamnya.
       style={{ "--accent": game.accent }}
     >
-      <header className="game-header">
-        <span className="game-number">{game.number}</span>
-        <div>
+      {/* Banner cover game dengan judul di atasnya */}
+      <header className="game-banner">
+        <Image
+          src={game.cover}
+          alt={`Cover game ${game.title}`}
+          fill
+          sizes="(max-width: 900px) 100vw, 900px"
+          className="game-banner-image"
+        />
+        <div className="game-banner-text">
+          <span className="game-number">{game.number}</span>
           <h2>{game.title}</h2>
           <p className="game-tagline">{game.tagline}</p>
         </div>
@@ -56,7 +66,7 @@ export default function GameSection({ game }) {
             const type = findType(note.type);
 
             return (
-              <li key={note.type}>
+              <li key={note.type} style={{ borderLeftColor: type.color }}>
                 <strong style={{ color: type.color }}>{type.name}</strong>
                 <p>{note.text}</p>
               </li>
@@ -74,6 +84,10 @@ export default function GameSection({ game }) {
           </div>
         ))}
       </dl>
+
+      {/* Kartu Steam hanya muncul untuk game yang punya steamAppId */}
+      {game.steamAppId && <SteamStats appId={game.steamAppId} />}
+
       <EvidenceGallery items={game.evidence} />
     </section>
   );

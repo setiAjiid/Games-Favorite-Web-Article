@@ -2,15 +2,16 @@
    Variabel warna dan ukuran yang dipakai di seluruh web
    ========================================================== */
 :root {
-  --bg: #0f1117;
-  --surface: #181b24;
-  --surface-2: #20242f;
-  --border: #2b303d;
-  --text: #e8eaf0;
-  --text-muted: #9aa1b2;
+  --bg: #0c0e13;
+  --surface: #151820;
+  --surface-2: #1d212b;
+  --border: #262b36;
+  --text: #eceef3;
+  --text-muted: #9ba2b3;
   --primary: #ff8a3d;
-  --radius: 14px;
-  --max-width: 860px;
+  --secondary: #7c9cff;
+  --radius: 16px;
+  --max-width: 880px;
 }
 
 /* ==========================================================
@@ -30,7 +31,9 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-jakarta), system-ui, sans-serif;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -41,17 +44,18 @@ h1,
 h2,
 h3,
 h4 {
-  line-height: 1.25;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 h2 {
-  font-size: 1.9rem;
+  font-size: 2rem;
   margin-bottom: 1rem;
 }
 
 h3 {
-  font-size: 1.25rem;
-  margin: 2.5rem 0 1rem;
+  font-size: 1.3rem;
+  margin: 3rem 0 1.25rem;
 }
 
 p + p {
@@ -68,10 +72,10 @@ p + p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 0.9rem 1.5rem;
-  background: rgba(15, 17, 23, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(12, 14, 19, 0.8);
+  backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border);
 }
 
@@ -79,17 +83,21 @@ p + p {
   font-weight: 800;
   color: var(--text);
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .navbar-links {
   display: flex;
-  gap: 1.25rem;
+  gap: 1.5rem;
+  overflow-x: auto;
 }
 
 .navbar-links a {
   color: var(--text-muted);
   text-decoration: none;
   font-size: 0.9rem;
+  white-space: nowrap;
+  transition: color 0.2s;
 }
 
 .navbar-links a:hover {
@@ -100,13 +108,27 @@ p + p {
    Hero (bagian judul paling atas)
    ========================================================== */
 .hero {
+  position: relative;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 6rem 1.5rem 4rem;
+  padding: 5.5rem 1.5rem 4.5rem;
+}
+
+/* Cahaya berwarna samar di belakang judul */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 420px;
+  z-index: -1;
+  background:
+    radial-gradient(circle 300px at 25% 40%, rgba(255, 138, 61, 0.16), transparent),
+    radial-gradient(circle 300px at 75% 30%, rgba(124, 156, 255, 0.16), transparent);
+  pointer-events: none;
 }
 
 .hero h1 {
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  font-size: clamp(2.3rem, 6vw, 3.8rem);
   font-weight: 800;
   margin-bottom: 1.25rem;
 }
@@ -114,22 +136,75 @@ p + p {
 .hero-subtitle {
   font-size: 1.15rem;
   color: var(--text-muted);
-  max-width: 640px;
+  max-width: 620px;
 }
 
 .hero-meta {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
   font-size: 0.9rem;
   color: var(--text-muted);
 }
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  font-size: 0.78rem;
   font-weight: 700;
   color: var(--primary);
   margin-bottom: 0.75rem;
+}
+
+/* Dua kartu cover game di bawah judul */
+.hero-covers {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.hero-cover {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.25s, border-color 0.25s;
+}
+
+.hero-cover:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.hero-cover-image {
+  object-fit: cover;
+}
+
+/* Lapisan gelap di bawah kartu supaya tulisan tetap terbaca */
+.hero-cover::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent 60%);
+}
+
+.hero-cover-text {
+  position: absolute;
+  left: 1.1rem;
+  bottom: 0.9rem;
+  z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.hero-cover-number {
+  font-size: 0.85rem;
+  color: var(--accent);
 }
 
 /* ==========================================================
@@ -142,14 +217,27 @@ p + p {
 }
 
 .section {
-  padding: 4rem 0;
+  padding: 4.5rem 0;
   border-top: 1px solid var(--border);
   scroll-margin-top: 4rem;
 }
 
 .lead {
-  font-size: 1.05rem;
+  font-size: 1.08rem;
   color: var(--text-muted);
+}
+
+/* Kotak abu-abu yang dipakai berulang kali di banyak tempat */
+.bartle-card,
+.game-info div,
+.stat-list div,
+.reason-list li,
+.bartle-analysis,
+.summary-card,
+.steam-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
 }
 
 /* ==========================================================
@@ -157,17 +245,14 @@ p + p {
    ========================================================== */
 .bartle-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   margin-top: 2rem;
 }
 
 .bartle-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
   border-top: 4px solid;
-  border-radius: var(--radius);
-  padding: 1.25rem;
+  padding: 1.4rem;
 }
 
 .bartle-card h3 {
@@ -181,56 +266,79 @@ p + p {
 
 .bartle-card .bartle-short {
   font-weight: 600;
-  margin: 0.25rem 0 0.75rem;
+  margin: 0.2rem 0 0.75rem;
 }
 
 /* ==========================================================
    Bagian game
    ========================================================== */
-.game-header {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
+
+/* Banner cover game */
+.game-banner {
+  position: relative;
+  aspect-ratio: 21 / 9;
+  border-radius: var(--radius);
+  overflow: hidden;
   margin-bottom: 1.5rem;
+  border: 1px solid var(--border);
 }
 
-.game-header h2 {
+.game-banner-image {
+  object-fit: cover;
+}
+
+.game-banner::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 9, 12, 0.95) 5%, rgba(8, 9, 12, 0.2) 60%, transparent);
+}
+
+.game-banner-text {
+  position: absolute;
+  left: 1.75rem;
+  right: 1.75rem;
+  bottom: 1.5rem;
+  z-index: 1;
+}
+
+.game-banner h2 {
   margin: 0;
-  font-size: 2.4rem;
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: #fff;
 }
 
 .game-number {
-  font-size: 3rem;
+  display: inline-block;
+  font-size: 0.85rem;
   font-weight: 800;
+  letter-spacing: 0.1em;
   color: var(--accent);
-  opacity: 0.8;
 }
 
 .game-tagline {
-  color: var(--accent);
-  font-weight: 600;
+  color: #d9dce4;
+  font-weight: 500;
 }
 
 /* Info singkat (developer, rilis, dan lainnya) */
 .game-info,
 .stat-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
   gap: 0.75rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .game-info div,
 .stat-list div {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
 }
 
 .game-info dt,
 .stat-list dt {
-  font-size: 0.75rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: var(--text-muted);
@@ -238,7 +346,12 @@ p + p {
 
 .game-info dd,
 .stat-list dd {
-  font-weight: 600;
+  font-weight: 700;
+}
+
+/* Angka di daftar bukti diberi warna aksen game */
+.stat-list dd {
+  color: var(--accent);
 }
 
 /* Daftar alasan dengan nomor berwarna */
@@ -246,36 +359,37 @@ p + p {
   list-style: none;
   counter-reset: reason;
   display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
 }
 
 .reason-list li {
   counter-increment: reason;
-  position: relative;
-  padding: 1.25rem 1.25rem 1.25rem 4rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
+  padding: 1.4rem;
+  transition: border-color 0.2s;
+}
+
+/* Kalau jumlah alasan ganjil, kartu terakhir dibuat selebar dua kolom */
+.reason-list li:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.reason-list li:hover {
+  border-color: var(--accent);
 }
 
 .reason-list li::before {
-  content: counter(reason);
-  position: absolute;
-  left: 1.25rem;
-  top: 1.2rem;
-  width: 1.9rem;
-  height: 1.9rem;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: var(--accent);
-  color: #111;
+  content: "0" counter(reason);
+  display: block;
+  margin-bottom: 0.6rem;
   font-weight: 800;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--accent);
 }
 
 .reason-list h4 {
-  margin-bottom: 0.35rem;
+  font-size: 1.05rem;
+  margin-bottom: 0.4rem;
 }
 
 .reason-list p {
@@ -287,22 +401,19 @@ p + p {
    Grafik dan catatan Bartle
    ========================================================== */
 .bartle-analysis {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.75rem;
 }
 
 .bartle-chart {
   display: grid;
-  gap: 0.75rem;
+  gap: 0.85rem;
 }
 
 .bartle-row {
   display: grid;
-  grid-template-columns: 90px 1fr 44px;
+  grid-template-columns: 95px 1fr 44px;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.85rem;
   font-size: 0.9rem;
 }
 
@@ -320,21 +431,130 @@ p + p {
 
 .bartle-value {
   text-align: right;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .bartle-notes {
   list-style: none;
   display: grid;
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem 1.5rem;
   margin-top: 1.75rem;
-  padding-top: 1.5rem;
+  padding-top: 1.75rem;
   border-top: 1px solid var(--border);
+}
+
+.bartle-notes li {
+  padding-left: 1rem;
+  border-left: 3px solid;
 }
 
 .bartle-notes p {
   color: var(--text-muted);
+  font-size: 0.93rem;
+}
+
+/* ==========================================================
+   Kartu data Steam
+   ========================================================== */
+.steam-card {
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--border));
+}
+
+.steam-card-empty {
+  color: var(--text-muted);
   font-size: 0.95rem;
+  text-align: center;
+}
+
+.steam-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.steam-avatar {
+  border-radius: 12px;
+}
+
+.steam-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.steam-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-top: 0 !important;
+}
+
+.steam-name a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.steam-numbers {
+  display: flex;
+  gap: 2.5rem;
+  margin: 1.5rem 0 1rem;
+}
+
+.steam-number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  color: var(--accent);
+}
+
+.steam-unit {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.steam-progress {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.steam-progress-fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 999px;
+}
+
+.steam-recent {
+  margin-top: 1.5rem;
+}
+
+.steam-recent ul {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+.steam-recent li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.93rem;
+}
+
+.steam-date,
+.steam-footnote {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.steam-footnote {
+  margin-top: 1rem;
 }
 
 /* ==========================================================
@@ -342,26 +562,39 @@ p + p {
    ========================================================== */
 .evidence-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
   gap: 1rem;
 }
 
 .evidence-frame {
   position: relative;
-  aspect-ratio: 16 / 10;
-  border-radius: 10px;
+  display: block;
+  aspect-ratio: 4 / 5;
+  border-radius: 12px;
   overflow: hidden;
   background: var(--surface);
   border: 1px solid var(--border);
+  transition: border-color 0.2s;
+}
+
+/* Screenshot lanskap memenuhi satu baris penuh */
+.evidence-item.wide {
+  grid-column: 1 / -1;
+}
+
+.evidence-item.wide .evidence-frame {
+  aspect-ratio: 20 / 9;
+}
+
+a.evidence-frame:hover {
+  border-color: var(--accent);
 }
 
 .evidence-image {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .evidence-empty {
-  position: absolute;
-  inset: 0;
   display: grid;
   place-items: center;
   padding: 1rem;
@@ -369,12 +602,12 @@ p + p {
   font-size: 0.85rem;
   color: var(--text-muted);
   border: 2px dashed var(--border);
-  border-radius: 10px;
 }
 
 .evidence-item figcaption {
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   font-size: 0.85rem;
+  line-height: 1.5;
   color: var(--text-muted);
 }
 
@@ -382,10 +615,7 @@ p + p {
    Kesimpulan, referensi, dan footer
    ========================================================== */
 .summary-card {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 1.5rem;
+  padding: 1.75rem;
   margin: 2rem 0;
 }
 
@@ -418,25 +648,51 @@ p + p {
 /* ==========================================================
    Tampilan untuk layar kecil (HP)
    ========================================================== */
-@media (max-width: 640px) {
-  .navbar-links {
-    display: none;
+@media (max-width: 700px) {
+  body {
+    font-size: 16px;
+  }
+
+  .navbar {
+    padding: 0.8rem 1rem;
   }
 
   .hero {
-    padding: 4rem 1.25rem 3rem;
+    padding: 3.5rem 1rem 3rem;
   }
 
   .container {
-    padding: 0 1.25rem;
+    padding: 0 1rem;
   }
 
-  .game-header h2 {
-    font-size: 1.9rem;
+  .section {
+    padding: 3.5rem 0;
   }
 
-  .game-number {
-    font-size: 2.2rem;
+  .hero-covers,
+  .bartle-grid,
+  .reason-list,
+  .bartle-notes {
+    grid-template-columns: 1fr;
+  }
+
+  .game-info,
+  .stat-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .game-banner {
+    aspect-ratio: 4 / 3;
+  }
+
+  .game-banner-text {
+    left: 1.1rem;
+    right: 1.1rem;
+    bottom: 1rem;
+  }
+
+  .bartle-analysis {
+    padding: 1.25rem;
   }
 
   .bartle-row {

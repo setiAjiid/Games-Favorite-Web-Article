@@ -1,3 +1,4 @@
+import Image from "next/image";
 import BartleSection from "@/components/BartleSection";
 import BartleChart from "@/components/BartleChart";
 import GameSection from "@/components/GameSection";
@@ -46,6 +47,31 @@ export default function Home() {
         <p className="hero-meta">
           Ditulis oleh {site.author} pada {site.date}
         </p>
+
+        {/* Kartu cover kedua game, bisa diklik untuk langsung ke bagiannya */}
+        <div className="hero-covers">
+          {games.map((game) => (
+            <a
+              key={game.id}
+              href={`#${game.id}`}
+              className="hero-cover"
+              style={{ "--accent": game.accent }}
+            >
+              <Image
+                src={game.cover}
+                alt={`Cover game ${game.title}`}
+                fill
+                sizes="(max-width: 640px) 100vw, 430px"
+                className="hero-cover-image"
+                preload
+              />
+              <span className="hero-cover-text">
+                <span className="hero-cover-number">{game.number}</span>
+                {game.title}
+              </span>
+            </a>
+          ))}
+        </div>
       </header>
 
       <main className="container">
