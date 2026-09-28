@@ -5,7 +5,7 @@ export const site = {
   title: "Dua Game Terbaik yang Pernah Aku Mainkan",
   subtitle:
     "Free Fire dan It Takes Two, dilihat dari pengalaman pribadi dan tipe pemain menurut Bartle Taxonomy.",
-  author: "Nama Kamu",
+  author: "Dimas Setiaji",
   date: "28 September 2026",
 };
 

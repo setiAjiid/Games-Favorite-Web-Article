@@ -2,12 +2,15 @@
 // Semua tulisan dikumpulkan di file ini supaya komponen tetap rapi.
 // Kalau ingin mengubah isi artikel, cukup edit bagian teks di sini.
 //
-// Catatan untuk bagian "stats" dan "evidence":
+// Catatan untuk bagian "cover", "stats", "evidence", dan "steamAppId":
+// - cover adalah gambar sampul game yang disimpan di folder public/cover.
 // - stats berisi data pribadi kamu (rank, jam main, dan sebagainya).
 //   Selama masih "Belum diisi", tulisan itu akan tampil apa adanya di web.
 // - evidence berisi screenshot bukti. Simpan gambarnya di folder public/bukti,
 //   lalu isi src dengan path-nya, misalnya "/bukti/ff-profil.jpg".
 //   Kalau src masih null, web akan menampilkan kotak kosong sebagai pengingat.
+//   Tambahkan wide: true untuk screenshot lanskap supaya tampil selebar halaman.
+// - steamAppId (opsional) membuat web menampilkan data asli dari akun Steam.
 
 export const games = [
   {
@@ -16,6 +19,7 @@ export const games = [
     title: "Free Fire",
     tagline: "Sepuluh menit yang selalu bikin deg-degan.",
     accent: "#ff8a3d",
+    cover: "/cover/free-fire.jpg",
     info: [
       { label: "Developer", value: "111 Dots Studio (Garena)" },
       { label: "Rilis", value: "2017" },
@@ -23,11 +27,12 @@ export const games = [
       { label: "Platform", value: "Android, iOS" },
     ],
     intro:
-      "Free Fire adalah game battle royale di mana 50 pemain diterjunkan ke sebuah pulau, mencari senjata, lalu bertarung sampai tersisa satu orang atau satu tim terakhir. Satu pertandingan hanya berlangsung sekitar sepuluh menit, dan game ini tetap ringan dijalankan di HP dengan spesifikasi biasa. Karena itu Free Fire jadi game yang paling sering aku mainkan, entah sendirian atau bareng teman.",
+      "Free Fire adalah game battle royale di mana 50 pemain diterjunkan ke sebuah pulau, mencari senjata, lalu bertarung sampai tersisa satu orang atau satu tim terakhir. Satu pertandingan hanya berlangsung sekitar sepuluh menit, dan game ini tetap ringan dijalankan di HP dengan spesifikasi biasa. Karena itu Free Fire jadi game yang paling sering aku mainkan, entah sendirian atau bareng teman. Menurut catatan Google Play Games, aku sudah menghabiskan 409 jam di game ini.",
     stats: [
-      { label: "Mulai bermain", value: "Belum diisi" },
-      { label: "Rank tertinggi", value: "Belum diisi" },
-      { label: "Mode favorit", value: "Belum diisi" },
+      { label: "Total jam main", value: "409 jam" },
+      { label: "Level Google Play", value: "Prodigy" },
+      { label: "Rank tertinggi", value: "Heroic (9 season)" },
+      { label: "Level akun", value: "Lv 74" },
     ],
     reasons: [
       {
@@ -74,16 +79,21 @@ export const games = [
     ],
     evidence: [
       {
-        src: null,
-        caption: "Halaman profil akun Free Fire (level dan rank).",
+        src: "/bukti/ff-profil.png",
+        caption:
+          "Profil akun Free Fire EVOS.AIMLESS dengan level 74 dan emblem Heroic.",
+        wide: true,
       },
       {
-        src: null,
-        caption: "Riwayat pertandingan atau layar Booyah!.",
+        src: "/bukti/ff-rank-heroic.png",
+        caption:
+          "Riwayat rank Crowned Glory 2026: sudah 9 kali mencapai Heroic, di Battle Royale (S49 sampai S53) dan Clash Squad (S35 sampai S38).",
+        wide: true,
       },
       {
-        src: null,
-        caption: "Free Fire di daftar aplikasi Google Play Store.",
+        src: "/bukti/ff-jam-main-google-play.png",
+        caption:
+          "Google Play Games mencatat 409 jam bermain Free Fire dengan level Prodigy.",
       },
     ],
   },
@@ -93,6 +103,9 @@ export const games = [
     title: "It Takes Two",
     tagline: "Game yang memang tidak bisa dimainkan sendirian.",
     accent: "#7c9cff",
+    cover: "/cover/it-takes-two.jpg",
+    // ID game di Steam, dipakai untuk mengambil jam main dan achievement secara otomatis.
+    steamAppId: 1426210,
     info: [
       { label: "Developer", value: "Hazelight Studios" },
       { label: "Rilis", value: "2021" },
@@ -102,11 +115,14 @@ export const games = [
     intro:
       "It Takes Two bercerita tentang Cody dan May, pasangan suami istri yang hampir bercerai. Karena sebuah kejadian aneh, mereka berubah menjadi boneka kecil dan harus bekerja sama untuk kembali ke tubuh aslinya. Game ini wajib dimainkan berdua, baik di satu layar maupun online. Game ini juga memenangkan penghargaan Game of the Year di The Game Awards 2021.",
     stats: [
-      { label: "Total jam main", value: "Belum diisi" },
-      { label: "Achievement", value: "Belum diisi" },
-      { label: "Main bareng", value: "Belum diisi" },
+      { label: "Platform main", value: "Steam (PC)" },
+      { label: "Main bareng", value: "Teman (co-op online)" },
     ],
     reasons: [
+      {
+        title: "Kenangan main bareng teman",
+        text: "Hal yang paling berkesan dari It Takes Two adalah momen memainkannya bersama teman. Puzzle di game ini dirancang supaya tidak bisa diselesaikan sendirian. Kami harus saling ngobrol, mencoba berbagai cara, kadang salah paham, lalu akhirnya berhasil bareng. Rasa senang saat satu puzzle akhirnya terpecahkan itulah yang membuat game ini terus teringat.",
+      },
       {
         title: "Kerja sama yang benar-benar dibutuhkan",
         text: "Hampir setiap rintangan hanya bisa dilewati kalau kedua pemain saling membantu. Satu pemain membuka jalan, pemain lain melanjutkannya. Komunikasi jadi kunci utama, dan itu membuat pengalaman bermainnya terasa hidup.",
@@ -148,19 +164,7 @@ export const games = [
         text: "Sisi kompetitif hanya muncul di minigame, saat aku dan partner saling adu. Porsinya kecil, tapi tetap seru.",
       },
     ],
-    evidence: [
-      {
-        src: null,
-        caption: "It Takes Two di library Steam beserta jumlah jam bermain.",
-      },
-      {
-        src: null,
-        caption: "Halaman achievement It Takes Two di Steam.",
-      },
-      {
-        src: null,
-        caption: "Screenshot saat bermain bersama partner.",
-      },
-    ],
+    // Bukti It Takes Two sudah diwakili oleh data langsung dari Steam.
+    evidence: [],
   },
 ];
