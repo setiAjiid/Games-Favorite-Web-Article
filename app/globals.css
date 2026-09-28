@@ -561,15 +561,18 @@ p + p {
    Galeri bukti screenshot
    ========================================================== */
 .evidence-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 1rem;
+}
+
+.evidence-item {
+  min-width: 0;
 }
 
 .evidence-frame {
   position: relative;
   display: block;
-  aspect-ratio: 4 / 5;
   border-radius: 12px;
   overflow: hidden;
   background: var(--surface);
@@ -577,21 +580,12 @@ p + p {
   transition: border-color 0.2s;
 }
 
-/* Screenshot lanskap memenuhi satu baris penuh */
-.evidence-item.wide {
-  grid-column: 1 / -1;
-}
-
-.evidence-item.wide .evidence-frame {
-  aspect-ratio: 20 / 9;
-}
-
 a.evidence-frame:hover {
   border-color: var(--accent);
 }
 
 .evidence-image {
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .evidence-empty {

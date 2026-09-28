@@ -9,7 +9,9 @@
 // - evidence berisi screenshot bukti. Simpan gambarnya di folder public/bukti,
 //   lalu isi src dengan path-nya, misalnya "/bukti/ff-profil.jpg".
 //   Kalau src masih null, web akan menampilkan kotak kosong sebagai pengingat.
-//   Tambahkan wide: true untuk screenshot lanskap supaya tampil selebar halaman.
+//   ratio adalah perbandingan lebar dan tinggi gambar (lebar / tinggi).
+//   Nilai ini dipakai agar gambar dalam satu baris tingginya sama rata.
+//   full (opsional) adalah gambar versi lengkap yang dibuka saat gambar diklik.
 // - steamAppId (opsional) membuat web menampilkan data asli dari akun Steam.
 
 export const games = [
@@ -80,18 +82,20 @@ export const games = [
     evidence: [
       {
         src: "/bukti/ff-profil.png",
+        ratio: 1600 / 718,
         caption:
           "Profil akun Free Fire EVOS.AIMLESS dengan level 74 dan emblem Heroic.",
-        wide: true,
       },
       {
         src: "/bukti/ff-rank-heroic.png",
+        ratio: 1069 / 480,
         caption:
           "Riwayat rank Crowned Glory 2026: sudah 9 kali mencapai Heroic, di Battle Royale (S49 sampai S53) dan Clash Squad (S35 sampai S38).",
-        wide: true,
       },
       {
-        src: "/bukti/ff-jam-main-google-play.png",
+        src: "/bukti/ff-prodigy.png",
+        full: "/bukti/ff-jam-main-google-play.png",
+        ratio: 720 / 500,
         caption:
           "Google Play Games mencatat 409 jam bermain Free Fire dengan level Prodigy.",
       },
