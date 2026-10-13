@@ -21,6 +21,7 @@ app/
 components/
   BartleSection.js    Penjelasan empat tipe pemain Bartle
   GameSection.js      Satu bagian artikel untuk satu game
+  GameAutopsy.js      Bedah game: core loop, mekanik, MDA, kekurangan
   BartleChart.js      Grafik batang skor Bartle
   EvidenceGallery.js  Galeri screenshot bukti
 data/

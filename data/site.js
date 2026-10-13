@@ -16,6 +16,10 @@ export const references = [
     url: "https://mud.co.uk/richard/hcds.htm",
   },
   {
+    text: 'Hunicke, R., LeBlanc, M., & Zubek, R. (2004). "MDA: A Formal Approach to Game Design and Game Research".',
+    url: "https://users.cs.northwestern.edu/~hunicke/MDA.pdf",
+  },
+  {
     text: "Free Fire di Google Play Store.",
     url: "https://play.google.com/store/apps/details?id=com.dts.freefireth",
   },

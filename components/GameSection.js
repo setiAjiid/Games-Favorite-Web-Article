@@ -2,6 +2,7 @@ import Image from "next/image";
 import { bartleTypes } from "@/data/bartle";
 import BartleChart from "./BartleChart";
 import EvidenceGallery from "./EvidenceGallery";
+import GameAutopsy from "./GameAutopsy";
 import SteamStats from "./SteamStats";
 
 // Mencari data tipe Bartle (nama dan warna) berdasarkan key-nya.
@@ -10,7 +11,7 @@ function findType(key) {
 }
 
 // Satu bagian artikel untuk satu game.
-// Isinya: cover, info singkat, alasan, analisis Bartle, dan bukti bermain.
+// Isinya: cover, info singkat, alasan, bedah game, analisis Bartle, dan bukti bermain.
 export default function GameSection({ game }) {
   return (
     <section
@@ -56,6 +57,9 @@ export default function GameSection({ game }) {
           </li>
         ))}
       </ol>
+
+      <h3>Bedah game: mekanik dan desainnya</h3>
+      <GameAutopsy autopsy={game.autopsy} />
 
       <h3>Dilihat dari Bartle Taxonomy</h3>
       <div className="bartle-analysis">

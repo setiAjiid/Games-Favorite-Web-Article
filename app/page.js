@@ -85,9 +85,21 @@ export default function Home() {
             <strong>Free Fire</strong> dan <strong>It Takes Two</strong>.
           </p>
           <p>
-            Pembahasannya meliputi alasan kenapa kedua game ini berkesan, bukti
-            bahwa aku benar-benar memainkannya, dan analisis tipe pemain
-            berdasarkan Bartle Taxonomy.
+            Pembahasannya meliputi alasan kenapa kedua game ini berkesan, bedah
+            mekanik yang membuatnya seru, bukti bahwa aku benar-benar
+            memainkannya, dan analisis tipe pemain berdasarkan Bartle Taxonomy.
+          </p>
+          <p>
+            Untuk membedah mekaniknya, aku memakai kerangka{" "}
+            <strong>MDA</strong> (Mechanics, Dynamics, Aesthetics) dari
+            Hunicke, LeBlanc, dan Zubek. Kerangka ini membaca game dalam tiga
+            lapis: <em>mekanik</em> adalah aturan dan sistem yang dibuat
+            developer, <em>dinamika</em> adalah apa yang terjadi saat aturan itu
+            dimainkan, dan <em>estetika</em> adalah rasa yang akhirnya dialami
+            pemain, seperti tantangan (Challenge), kebersamaan (Fellowship),
+            penemuan (Discovery), atau cerita (Narrative). Dengan cara ini,
+            alasan sebuah game jadi favorit bisa ditelusuri sampai ke mekanik
+            yang menyebabkannya.
           </p>
         </section>
 
@@ -106,6 +118,14 @@ export default function Home() {
             petualangan yang santai dan penuh kerja sama. Tapi kalau dilihat
             dari Bartle Taxonomy, keduanya punya satu kesamaan: sama-sama
             paling seru saat dimainkan bersama orang lain.
+          </p>
+          <p>
+            Hasil bedah mekaniknya juga menunjukkan hal yang sama. Free Fire
+            punya mekanik knock dan revive yang membuat anggota squad saling
+            bergantung, sedangkan It Takes Two memberi Cody dan May kemampuan
+            berbeda yang hanya berguna kalau digabungkan. Keduanya sama-sama
+            dirancang supaya pemain harus berinteraksi, dan dari sanalah rasa
+            Fellowship yang paling aku sukai muncul.
           </p>
 
           <div className="summary-card">

@@ -232,6 +232,8 @@ p + p {
 .game-info div,
 .stat-list div,
 .reason-list li,
+.mechanic-card,
+.mda-table,
 .bartle-analysis,
 .summary-card,
 .steam-card {
@@ -395,6 +397,170 @@ p + p {
 .reason-list p {
   color: var(--text-muted);
   font-size: 0.95rem;
+}
+
+/* ==========================================================
+   Bedah game (core loop, mekanik, MDA, kekurangan)
+   ========================================================== */
+.autopsy > p:first-child {
+  color: var(--text-muted);
+}
+
+.autopsy-heading {
+  font-size: 1rem;
+  margin: 2.25rem 0 1rem;
+  color: var(--accent);
+}
+
+.autopsy-note {
+  margin-top: 0.9rem;
+  font-size: 0.93rem;
+  color: var(--text-muted);
+}
+
+/* Langkah-langkah core loop, disambung dengan tanda panah */
+.loop-list {
+  list-style: none;
+  counter-reset: loop;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.loop-list li {
+  counter-increment: loop;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.loop-list li::before {
+  content: counter(loop);
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 18%, transparent);
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+
+.loop-list li:not(:last-child)::after {
+  content: "\2192";
+  color: var(--text-muted);
+}
+
+/* Tanda bahwa alurnya kembali lagi ke langkah pertama */
+.loop-list li:last-child::after {
+  content: "\21BB  ulang";
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+/* Kartu mekanik */
+.mechanic-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.mechanic-card {
+  padding: 1.4rem;
+  border-top: 3px solid var(--accent);
+}
+
+/* Kalau jumlah mekanik ganjil, kartu terakhir dibuat selebar dua kolom */
+.mechanic-card:last-child:nth-child(odd) {
+  grid-column: 1 / -1;
+}
+
+.mechanic-card h5 {
+  font-size: 1.05rem;
+  margin-bottom: 0.75rem;
+}
+
+.mechanic-card p {
+  font-size: 0.93rem;
+  color: var(--text-muted);
+}
+
+.mechanic-card p + p {
+  margin-top: 0;
+}
+
+.mechanic-card .mechanic-label {
+  margin-top: 0.75rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
+.mechanic-card h5 + .mechanic-label {
+  margin-top: 0;
+}
+
+/* Tabel MDA */
+.mda-table {
+  overflow: hidden;
+}
+
+.mda-row {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1.1fr;
+  gap: 1rem;
+  padding: 0.9rem 1.25rem;
+  font-size: 0.93rem;
+  border-top: 1px solid var(--border);
+}
+
+.mda-head {
+  border-top: none;
+  background: var(--surface-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.mda-row:not(.mda-head) span:not(.mda-aesthetic) {
+  color: var(--text-muted);
+}
+
+.mda-row:not(.mda-head) span:first-child {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.mda-aesthetic {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Daftar kekurangan */
+.flaw-list {
+  list-style: none;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.flaw-list li {
+  padding-left: 1rem;
+  border-left: 3px solid var(--border);
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.flaw-list strong {
+  color: var(--text);
 }
 
 /* ==========================================================
@@ -666,8 +832,37 @@ a.evidence-frame:hover {
   .hero-covers,
   .bartle-grid,
   .reason-list,
+  .mechanic-list,
   .bartle-notes {
     grid-template-columns: 1fr;
+  }
+
+  /* Di HP, setiap baris MDA ditumpuk ke bawah dengan label kecil */
+  .mda-head {
+    display: none;
+  }
+
+  .mda-row {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+    border-top: none;
+  }
+
+  .mda-row + .mda-row {
+    border-top: 1px solid var(--border);
+  }
+
+  .mda-head + .mda-row {
+    border-top: none;
+  }
+
+  .mda-row span[data-label]::before {
+    content: attr(data-label) ": ";
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
   }
 
   .game-info,
